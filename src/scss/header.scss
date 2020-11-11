@@ -1,2 +1,40 @@
 @import 'variables';
-@import "mixins";
+
+.header {
+  width: 100%;
+  height: $header_height;
+  position: absolute;
+  left: 0;
+  top:0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid $grey;
+
+  &__input {
+    height: 35px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid white;
+    outline: none;
+    box-sizing: border-box;
+
+    &:hover {
+      border: 1px solid $grey;
+    }
+
+    &:focus {
+      border: 1px solid $green;
+      outline: 1px solid $green;
+    }
+  }
+
+  &__icons-wrapper {
+    width: 50px;
+    float: left;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+  }
+}

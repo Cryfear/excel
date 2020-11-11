@@ -1,2 +1,33 @@
 @import 'variables';
-@import "mixins";
+
+.formula {
+  height: $formula_height;
+  position: absolute;
+  top: $header_height + $toolbar_height;
+  right: 0;
+  left: 0;
+  border-bottom: 1px solid $grey;
+  padding-right: 10px;
+  padding-left: 18px;
+  display: flex;
+
+  &__info {
+    font-style: italic;
+    font-size: 15px;
+    color: grey;
+    border-right: 1px solid $grey;
+    display: inline-block;
+    width: 33px;
+    padding-top: 7px;
+  }
+
+  &__input {
+    display: inline-block;
+    height: $formula_height;
+    width: 100%;
+    padding-left: 10px;
+    padding-top: 7px;
+    box-sizing: border-box;
+    outline: none;
+  }
+}
