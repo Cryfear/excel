@@ -1,2 +1,11 @@
 @import 'variables';
-@import "mixins";
+
+.toolbar {
+  position: absolute;
+  top: $header_height;
+  height: $toolbar_height;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  border-bottom: 1px solid $grey;
+}
