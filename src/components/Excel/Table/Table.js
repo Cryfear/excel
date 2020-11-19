@@ -1,58 +1,10 @@
-<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="shortcut icon" href="../favicon.ico">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet">
-  <title>Excel</title>
-</head>
-<body>
+import ExcelComponent from '@core/ExcelComponent';
 
-<div id="app">
-  <div class="header">
-    <input placeholder="Новая таблица" class="header__input">
-    <div class="header__icons-wrapper">
-      <span class="material-icons">
-        delete
-      </span>
-      <span class="material-icons">
-        exit_to_app
-      </span>
-    </div>
-  </div>
+export default class Table extends ExcelComponent {
+  static className = 'table';
 
-  <div class="toolbar">
-    <span class="material-icons">
-      format_align_left
-    </span>
-    <span class="material-icons">
-      format_align_center
-    </span>
-    <span class="material-icons">
-      format_align_right
-    </span>
-    <span class="material-icons">
-      format_bold
-    </span>
-    <span class="material-icons">
-      format_italic
-    </span>
-    <span class="material-icons">
-      format_underline
-    </span>
-  </div>
-
-  <div class="formula">
-    <div class="formula__info">fx</div>
-    <div class="formula__input" contenteditable="true" spellcheck="false"></div>
-  </div>
-
-  <div class="table">
-
+  toHTML() {
+    return `
     <div class="row">
 
       <div class="row-info"></div>
@@ -143,11 +95,6 @@
         <div class="cell">A1</div>
         <div class="cell">B2</div>
       </div>
-    </div>
-
-  </div>
-
-</div>
-
-</body>
-</html>
+    </div>`;
+  }
+}
