@@ -1,11 +1,11 @@
-@import "variables";
-@import "mixins";
+@use"variables";
+@use "mixins";
 
 .excel__table {
   position: absolute;
   left: 0;
   right: 0;
-  top: $header-height + $toolbar-height + $formula-height;
+  top: variables.$header-height + variables.$toolbar-height + variables.$formula-height;
   overflow-x: auto;
   padding-bottom: 2px;
 
@@ -13,16 +13,16 @@
     display: flex;
     flex-direction: row;
     min-height: 20px;
-    height: $row-height;
+    height: variables.$row-height;
   }
 
   .row-info {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: $info-cell-width;
+    min-width: variables.$info-cell-width;
     height: 100%;
-    border: 1px solid $border-color;
+    border: 1px solid variables.$border-color;
     background: #f8f9fa;
     border-top: none;
   }
@@ -37,8 +37,8 @@
     align-items: center;
     background: #f8f9fa;
     min-width: 40px;
-    width: $cell-width;
-    border: 1px solid $border-color;
+    width: variables.$cell-width;
+    border: 1px solid variables.$border-color;
     border-top: 0;
     border-left: 0;
     height: 100%;
@@ -47,7 +47,7 @@
   .cell {
     min-width: 40px;
     padding: 5px;
-    width: $cell-width;
+    width: variables.$cell-width;
     height: 100%;
     border: 1px solid #e2e3e3;
     border-top: 0;

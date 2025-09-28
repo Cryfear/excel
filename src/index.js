@@ -1,10 +1,3 @@
-import { num } from './module';
-import './scss/css.scss';
+import './scss/index.scss';
 
-console.log(num);
-
-async function f() {
-  return await Promise.resolve('async workinq asdsadg');
-}
-
-f().then(data=> console.log(data));
+console.log('Working!');

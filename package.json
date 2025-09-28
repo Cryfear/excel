@@ -44,6 +44,7 @@
     "> 0.25%, not dead"
   ],
   "dependencies": {
-    "globals": "^16.4.0"
+    "globals": "^16.4.0",
+    "normalize.css": "^8.0.1"
   }
 }

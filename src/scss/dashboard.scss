@@ -1,5 +1,5 @@
-@import "variables";
-@import "mixins";
+@use "variables";
+@use "mixins";
 
 .db {
 
@@ -8,7 +8,7 @@
     left: 0;
     right: 0;
     top: 0;
-    height: $db-header-height;
+    height: variables.$db-header-height;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,7 +18,7 @@
   }
 
   &__new {
-    margin-top: $db-header-height;
+    margin-top: variables.$db-header-height;
     padding: 1.5rem;
     background: #dadce0;
   }
@@ -64,7 +64,7 @@
   }
 
   &__list {
-    @include clear-list;
+    @include mixins.clear-list;
   }
 
   &__record {
