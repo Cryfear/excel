@@ -18,6 +18,14 @@ class Dom {
     return this;
   }
 
+  on(eventType, callback) {
+    this.$el.addEventListener(eventType, callback);
+  }
+
+  off(eventType, callback) {
+    this.$el.removeEventListener(eventType, callback);
+  }
+
   append(nodeElement) {
     if (nodeElement instanceof Dom) nodeElement = nodeElement.$el;
 
