@@ -36,6 +36,32 @@ class Dom {
 
     return this;
   }
+
+  get data() {
+    return this.$el.dataset;
+  }
+
+  closest(selector) {
+    return $(this.$el.closest(selector));
+  }
+
+  getCoords() {
+    return this.$el.getBoundingClientRect();
+  }
+
+  findAll(tagName) {
+    return this.$el.querySelectorAll(tagName);
+  }
+
+  css(styles = {}) {
+    for (const [property, value] of Object.entries(styles)) {
+      if (property.startsWith('--')) {
+        this.$el.style.setProperty(property, value);
+      } else {
+        this.$el.style[property] = value;
+      }
+    }
+  }
 }
 
 export function $(selector) {
