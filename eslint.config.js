@@ -27,7 +27,7 @@ export default [
 
       // Максимальная длина строки - 80 символов (Google стандарт)
       'max-len': ['error', {
-        code: 80,
+        code: 120,
         ignoreUrls: true,
         ignoreTemplateLiterals: true,
         ignoreStrings: true, // ← игнорируем длинные строки

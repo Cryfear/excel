@@ -1,8 +1,8 @@
-@use 'header';
-@use 'toolbar';
-@use 'formula';
-@use 'table';
-@use 'dashboard';
+@use "header";
+@use "toolbar";
+@use "formula";
+@use "table";
+@use "dashboard";
 
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import "~normalize.css";
@@ -25,3 +25,5 @@ body {
   max-width: 100%;
   font-size: .8rem;
 }
+
+

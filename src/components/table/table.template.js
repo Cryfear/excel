@@ -3,46 +3,65 @@ const CODES = {
   Z: 90,
 };
 
-function toCell(char) {
-  return `<div class="cell" data-resize-id=${char} contenteditable="true">${''}</div>`;
+function toCell(row) {
+  return function (_, col) {
+    return `
+      <div 
+        class="cell" 
+        contenteditable 
+        data-col="${col}"
+        data-type="cell"
+        data-id="${row}:${col}"
+      ></div>
+    `;
+  };
 }
 
-function toColumn(col) {
+function toColumn(col, index) {
   return `
-    <div class="column" data-type="resizable" data-resize-id=${col}>
-        ${col}
-        <div class="col-resize" data-resize="col"></div>
-    </div>`;
-}
-
-function createRow(content, index = '', cels) {
-  const resizer = index ? `<div class="row-resize" data-resize="row"></div>` : '';
-  return `
-    <div class="row" data-type="resizable">
-      <div class="row-info">${index}${resizer}</div>
-      <div class="row-data">${content} ${cels || ''}</div>
+    <div class="column" data-type="resizable" data-col="${index}">
+      ${col}
+      <div class="col-resize" data-resize="col"></div>
     </div>
   `;
 }
 
+function createRow(index, content) {
+  const resize = index ? '<div class="row-resize" data-resize="row"></div>' : '';
+  return `
+    <div class="row" data-type="resizable">
+      <div class="row-info">
+        ${index ? index : ''}
+        ${resize}
+      </div>
+      <div class="row-data">${content}</div>
+    </div>
+  `;
+}
 
 function toChar(_, index) {
   return String.fromCharCode(CODES.A + index);
 }
 
-export function createTable(rowsCount = 20) {
-  const colsCount = CODES.Z - CODES.A + 1; // how many columns we need
+export function createTable(rowsCount = 15) {
+  const colsCount = CODES.Z - CODES.A + 1; // Compute cols count
   const rows = [];
-  const chared = new Array(colsCount).fill('').map(toChar);
 
-  const cels = chared.map(toCell);
-  // horizontal contenteditable cels
-  const cols = chared.map(toChar).map(toColumn).join(''); // horizontal letters with html, header vertical rows
+  const cols = new Array(colsCount)
+    .fill('')
+    .map(toChar)
+    .map(toColumn)
+    .join('');
 
-  rows.push(createRow(cols));
+  rows.push(createRow(null, cols));
 
-  for (let i = 1; i <= rowsCount; i++) {
-    rows.push(createRow('', i.toString(), cels.join('')));
+  for (let row = 0; row < rowsCount; row++) {
+    const cells = new Array(colsCount)
+      .fill('')
+      .map(toCell(row))
+      .join('');
+
+    rows.push(createRow(row + 1, cells));
   }
 
   return rows.join('');

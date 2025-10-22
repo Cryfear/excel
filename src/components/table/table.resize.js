@@ -1,49 +1,46 @@
 import { $ } from '@core/dom';
 
-export function resizeHandler(event, $root) {
-  const type = event.target.dataset.resize;
-  const resizer = $(event.target);
-  const parent = resizer.closest('[data-type="resizable"]');
+export function resizeHandler($root, event) {
+  const $resizer = $(event.target);
+  const $parent = $resizer.closest('[data-type="resizable"]');
+  const coords = $parent.getCoords();
+  const type = $resizer.data.resize;
   const sideProp = type === 'col' ? 'bottom' : 'right';
+  let value;
 
-  const cords = parent.getCoords();
-
-  resizer.css({ opacity: 1, [sideProp]: '-5000px' });
+  $resizer.css({
+    opacity: 1,
+    [sideProp]: '-5000px',
+  });
 
   document.onmousemove = e => {
     if (type === 'col') {
-      const delta = e.pageX - cords.right;
-      resizer.css({ right: -delta + 'px' });
+      const delta = e.pageX - coords.right;
+      value = coords.width + delta;
+      $resizer.css({ right: -delta + 'px' });
     } else {
-      const delta = e.pageY - cords.bottom;
-      resizer.css({ bottom: -delta + 'px' });
+      const delta = e.pageY - coords.bottom;
+      value = coords.height + delta;
+      $resizer.css({ bottom: -delta + 'px' });
     }
   };
 
-  document.onmouseup = e => {
-    document.onmouseup = null;
+  document.onmouseup = () => {
     document.onmousemove = null;
+    document.onmouseup = null;
 
     if (type === 'col') {
-      const colId = parent.data['resizeId'];
-      const columns = $root.findAll(`.cell[data-resize-id=${colId}]`);
-
-      const delta = e.pageX - cords.right;
-      const value = cords.width + delta;
-
-      columns.forEach(item => item.style.width = value + 'px');
-
-      resizer.css({ right: 0 });
-      parent.css({ width: value + 'px' });
+      $parent.css({ width: value + 'px' });
+      $root.findAll(`[data-col="${$parent.data.col}"]`)
+        .forEach(el => el.style.width = value + 'px');
     } else {
-      const delta = e.pageY - cords.bottom;
-      const value = cords.height + delta;
-
-      parent.css({ height: value + 'px' });
+      $parent.css({ height: value + 'px' });
     }
 
-    resizer.css({ opacity: 0, bottom: 0 });
+    $resizer.css({
+      opacity: 0,
+      bottom: 0,
+      right: 0,
+    });
   };
 }
-
-export const shouldResize = event => event.target.dataset.resize;
