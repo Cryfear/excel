@@ -1,4 +1,4 @@
-@use "variables";
+@use "variables"as *;
 @use "mixins";
 
 
@@ -6,18 +6,18 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: variables.$header-height + variables.$toolbar-height;
-  height: variables.$formula-height;
+  top: $header-height + $toolbar-height;
+  height: $formula-height;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid variables.$border-color;
+  border-bottom: 1px solid $border-color;
 
   .info {
     font-size: 18px;
     font-style: italic;
     text-align: center;
-    border-right: 1px solid variables.$border-color;
-    min-width: variables.$info-cell-width;
+    border-right: 1px solid $border-color;
+    min-width: $info-cell-width;
   }
 
   .input {
